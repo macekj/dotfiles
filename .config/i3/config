@@ -63,6 +63,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# show scratchpad terminal
+bindsym $mod+i [title="scratchterm"] scratchpad show, move position center
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -200,6 +203,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# floating scratchpad settings
+for_window [title="scratchterm"] floating enable, resize set 800 600, \
+                          move scratchpad
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -226,4 +233,7 @@ bindsym XF86Tools exec ~/.config/scripts/toggle_touchpad.sh
 bindsym XF86MonBrightnessUp     exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
-
+# autostart
+exec --no-startup-id termite --title scratchterm
+# remake scratchpad
+bindsym $mod+Shift+i exec --no-startup-id termite --title scratchterm
