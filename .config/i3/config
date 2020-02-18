@@ -13,7 +13,12 @@ for_window [class=".*^"] border pixel 0
 gaps inner 5
 gaps outer 5
 
+#border_radius 0
+
 smart_borders on
+
+# only use gaps when there are more than 1 window
+# smart_gaps on
 
 set $mod Mod4
 
@@ -41,6 +46,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # it fails to get colors from Xresources.
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
+set_from_resource $bar_bg i3wm.color0 #f0f0f0
+set_from_resource $bar_wsborder i3wm.color3 #f0f0f0
+set_from_resource $bar_wsinner i3wm.color4 #f0f0f0
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $bg
@@ -217,9 +225,11 @@ bar {
 	workspace_buttons yes
 	separator_symbol ":+:"
 	colors {
-		background #1b1b3a		
+		background $bar_bg
+    # 1b1b3a
 
-		focused_workspace #6f2877 #994c99 #ffffff
+		focused_workspace $bar_wsinner $bar_wsborder #ffffff
+    #focused_workspace #6f2877 #994c99 #ffffff
 	}
 }
 
@@ -237,3 +247,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 exec --no-startup-id termite --title scratchterm
 # remake scratchpad
 bindsym $mod+Shift+i exec --no-startup-id termite --title scratchterm
+
+#interactive screenshot by pressing printscreen
+bindsym Print exec gnome-screenshot -i 
+#crop-area screenshot by pressing Mod + printscreen
+bindsym $mod+Print exec gnome-screenshot -a

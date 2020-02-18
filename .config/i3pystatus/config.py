@@ -69,6 +69,7 @@ status.register("battery",
         "DIS": "↓",
         "CHR": "↑",
         "FULL": "=",
+        "DPL": "X"
     },)
 
 status.register("battery",
@@ -84,6 +85,7 @@ status.register("battery",
         "DIS": "↓",
         "CHR": "↑",
         "FULL": "=",
+        "DPL": "X",
     },)
 
 

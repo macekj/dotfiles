@@ -21,7 +21,8 @@ export ZSH="/home/joe/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="random"
-ZSH_THEME=redux
+#kennethreitz, gallifrey, redux
+ZSH_THEME=gallifrey
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -87,7 +88,9 @@ plugins=(
     git
     colored-man-pages
     colorize
+    copyfile
     fzf 
+    jump
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -118,12 +121,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias caen="ssh macekj@login.engin.umich.edu"
-alias eecs="cd ~/School/eecs281"
+alias sch="cd ~/School/"
+alias ce="code . && exit" 
 
 # Start ssh daemon
-eval $(keychain -q --eval id_glum)
-eval $(keychain -q --eval github)
-eval $(keychain -q --eval id_ed25519)
+ssh-add ~/.ssh/id_glum &>/dev/null
+#eval $(keychain --eval --agents ssh id_glum)
+#eval $(keychain -q --eval github)
+#eval $(keychain -q --eval id_ed25519)
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
